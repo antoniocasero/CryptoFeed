@@ -1,0 +1,22 @@
+PODS:
+  - CryptoFeed (0.1):
+    - Socket.IO-Client-Swift (~> 11.1.0)
+  - Socket.IO-Client-Swift (11.1.1):
+    - StarscreamSocketIO (~> 8.0.4)
+  - StarscreamSocketIO (8.0.4)
+
+DEPENDENCIES:
+  - CryptoFeed (from `../.`)
+
+EXTERNAL SOURCES:
+  CryptoFeed:
+    :path: "../."
+
+SPEC CHECKSUMS:
+  CryptoFeed: 938954307e36a09a2fbbef0ad77f5f6b259c48ee
+  Socket.IO-Client-Swift: 2e3a9602edf9d6e8d0b6869cf4f6014c7ca2924f
+  StarscreamSocketIO: 06614e7dad097dccee071a33550f1d775524c9b4
+
+PODFILE CHECKSUM: 7ad7cdc50801393931081e69bf0e98c8caeeba7e
+
+COCOAPODS: 1.2.0

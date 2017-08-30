@@ -1,0 +1,6 @@
+framework module CryptoFeed {
+  umbrella header "CryptoFeed-umbrella.h"
+
+  export *
+  module * { export * }
+}
