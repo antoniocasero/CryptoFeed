@@ -9,11 +9,6 @@
 import Foundation
 public extension Array where Element: FloatingPoint {
     
-    /// SwifterSwift: Average of all elements in array.
-    ///
-    ///		[1.2, 2.3, 4.5, 3.4, 4.5].average = 3.18
-    ///
-    /// - Returns: average of the array's elements.
     public func average() -> Element {
         guard isEmpty == false else { return 0 }
         var total: Element = 0
@@ -24,14 +19,6 @@ public extension Array where Element: FloatingPoint {
 
 public extension Array {
 
-    /// SwifterSwift: Reduces an array while returning each interim combination.
-    ///
-    ///     [1, 2, 3].accumulate(initial: 0, next: +) -> [1, 3, 6]
-    ///
-    /// - Parameters:
-    ///   - initial: initial value.
-    ///   - next: closure that combines the accumulating value and next element of the array.
-    /// - Returns: an array of the final accumulated value and each interim combination.
     public func accumulate<U>(initial: U, next: (U, Element) throws -> U) rethrows -> [U] {
         var runningTotal = initial
         return try map { element in

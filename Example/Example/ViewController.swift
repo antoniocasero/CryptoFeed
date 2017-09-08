@@ -23,9 +23,6 @@ class ViewController: UIViewController {
             print($0)
         
         }
-        
-        let rsi = RSI(coin: "BTC")
-        
         //You get the history of the coin, mainly for charts.
 //        feed.history(timeFrame: .week, coin: "BTC") { print($0) }
         

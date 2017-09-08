@@ -25,9 +25,6 @@ public struct HistoryModel {
         self.priceHistory = priceArray
         self.price = priceArray.map({ return $0[1] }).flatMap{$0}
     }
-    
-    public func convertToTicks() -> [MarketTic]
-    
 }
 
 

@@ -31,7 +31,6 @@
 		6B5F48CCC07EFEB1837DE8A3B8267B55 /* SocketClientManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF048F559B5A60DD9CFF1049486BC9 /* SocketClientManager.swift */; };
 		701D51D288056520F8BA2D496DEC5083 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23D48020200AA8A507058B24AA8AC8 /* Array+Utils.swift */; };
 		70BBE2B6A470DBF0B53DE7DFD82595D4 /* SocketEngineSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8665FCCE3DA78706EEAD44E7379EEF /* SocketEngineSpec.swift */; };
-		742D74070957753AE81AAA55F25A40B1 /* RSI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53123E349B609A13B6DF21CE6523368 /* RSI.swift */; };
 		7D822E7340E2DC38B76A19A575F536B7 /* SocketIOClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F5DC633D6E3A508148D7DCE93D5FC /* SocketIOClientConfiguration.swift */; };
 		7E11E1EAAA6ED67A7DE6D821ABB7C437 /* Socket.IO-Client-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F16EB6B79A4B5971A88F0FA13A80F49 /* Socket.IO-Client-Swift-dummy.m */; };
 		7E9EC74FE78CCD34176CE2B84A11DAF6 /* SocketIOClientOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BF267C94F42588F6D8817EF9F97FF3 /* SocketIOClientOption.swift */; };
@@ -169,7 +168,6 @@
 		EFFB74AAA6B2AE8DABF0E88E61E09178 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F246714F0CFE792FEB909FE1E0B7695C /* SocketIOClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketIOClient.swift; path = Source/SocketIOClient.swift; sourceTree = "<group>"; };
 		F2DCD6511EE6931C5E525587665EB733 /* SocketIOClientStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketIOClientStatus.swift; path = Source/SocketIOClientStatus.swift; sourceTree = "<group>"; };
-		F53123E349B609A13B6DF21CE6523368 /* RSI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RSI.swift; sourceTree = "<group>"; };
 		F7E54E5944C07F47B27E99A3CB466C8E /* SocketEngineWebsocket.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocketEngineWebsocket.swift; path = Source/SocketEngineWebsocket.swift; sourceTree = "<group>"; };
 		FC57C2A1513EE6EF199D484B545A75C9 /* HistoryModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -358,7 +356,6 @@
 				7C910F3396FAD3930FDA82D6801D83B8 /* History.swift */,
 				FC57C2A1513EE6EF199D484B545A75C9 /* HistoryModel.swift */,
 				ABB79CB30D1263893FA50BE6D7AACE9A /* Network.swift */,
-				F53123E349B609A13B6DF21CE6523368 /* RSI.swift */,
 				0A2DF3551F5BF3B5006B9468 /* Market.swift */,
 			);
 			path = Sources;
@@ -599,7 +596,6 @@
 				A6A25EE2B10800249E7C3CBB31D05636 /* History.swift in Sources */,
 				DC5EADD59A0F7BEA0CAC7B8FA1847557 /* HistoryModel.swift in Sources */,
 				A24457CF0ED31BE2855EA58602597E87 /* Network.swift in Sources */,
-				742D74070957753AE81AAA55F25A40B1 /* RSI.swift in Sources */,
 				0A2DF3561F5BF3B5006B9468 /* Market.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
