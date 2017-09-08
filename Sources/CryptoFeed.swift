@@ -11,16 +11,7 @@ import SocketIO
 
 
 open class CryptoFeed {
-    
-    public enum historyTime : String {
-        case day = "1day"
-        case week = "7day"
-        case month = "30day"
-        case trimeseter = "90day"
-        case halfyear = "180day"
-        case year = "360day"
-    }
-    
+
     public enum coinProperties  {
         case volume
         case gain
@@ -28,9 +19,10 @@ open class CryptoFeed {
     }
     
     public var preferableCoins : [String] = []
-    public typealias AsyncOperation = (Result<[String : Any]>) -> Void
     public var currentStatus : [String : Coin] = [:]
+    public var historyStatus : [String : [Coin]] = [:]
     
+
     private var allCoins: [String : Coin] = [:]
     private var socket : SocketIOClient
     
@@ -50,6 +42,7 @@ open class CryptoFeed {
                     return
                 }
                 self.currentStatus[crypto.id.name] = crypto
+                self.addToHistory(crypto, each: TimeInterval(60))
                 input(crypto)
             }
         }
@@ -58,16 +51,6 @@ open class CryptoFeed {
     
     open func closeConnection() {
         socket.disconnect()
-    }
-    
-    open func history(timeFrame:historyTime, coin:String, completion: @escaping (History) -> ()) {
-        let request = URLRequest(url: URL(string: "http://www.coincap.io/history/\(timeFrame.rawValue)/\(coin)")!)
-        rawRequest(request) { result in
-            switch result {
-            case .success(let dic): completion(History(name: coin, dic:dic))
-            case .failure(_): print("Error")
-            }
-        }
     }
     
     open func topCoins(limit:Int, by property:coinProperties) -> [Coin] {
@@ -87,29 +70,14 @@ open class CryptoFeed {
         return subArray
     }
     
-    private func rawRequest(_ request: URLRequest, completion: @escaping AsyncOperation) {
-        
-        let session = URLSession.shared
-        session.dataTask(with: request) { (data, response, error) in
-            guard let data = data, let _ = response else {
-                return completion(.failure(error!))
+    func addToHistory(_ coin:Coin, each seconds:TimeInterval) {
+        if let lastUpdate = self.historyStatus[coin.id.name]?.last?.timeStamp {
+            if(Date().timeIntervalSince(lastUpdate) > TimeInterval(seconds)) {
+                self.historyStatus.appending(coin.id.name,coin)
             }
-            do {
-                guard let json = try JSONSerialization.jsonObject(with: data, options:.allowFragments) as? [String : AnyObject] else {
-                    return completion(.failure(nil))
-                }
-                if let errorArray = json["error"] as? [String] {
-                    if !errorArray.isEmpty {
-                        return completion(.failure(nil))
-                    }
-                }
-                return completion(.success(json))
-                
-            } catch _ {
-                return completion(.failure(nil))
-            }
-            
-            }.resume()
+        } else {
+            self.historyStatus.appending(coin.id.name,coin)
+        }
     }
     
     deinit {

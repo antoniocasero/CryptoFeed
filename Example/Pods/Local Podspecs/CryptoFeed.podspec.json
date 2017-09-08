@@ -3,7 +3,7 @@
   "version": "0.1",
   "summary": "Summary",
   "description": "Utility to fetch all crypto coins properties in real time using CoinCap.io API",
-  "homepage": "www.crypto.es",
+  "homepage": "https://github.com/antoniocasero/CryptoFeed",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -11,14 +11,14 @@
   "authors": {
     "Antonio Casero": "anto.casero@gmail.com"
   },
-  "social_media_url": "",
+  "social_media_url": "@acaserop",
   "platforms": {
     "ios": "8.0",
-    "osx": "10.9",
+    "osx": "10.10",
     "tvos": "9.0"
   },
   "source": {
-    "git": ".git",
+    "git": "https://github.com/antoniocasero/CryptoFeed.git",
     "tag": "0.1",
     "submodules": true
   },

@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: "../."
 
 SPEC CHECKSUMS:
-  CryptoFeed: 938954307e36a09a2fbbef0ad77f5f6b259c48ee
+  CryptoFeed: f560d35fd1c8d98651a4440924973a2a77cf5293
   Socket.IO-Client-Swift: 2e3a9602edf9d6e8d0b6869cf4f6014c7ca2924f
   StarscreamSocketIO: 06614e7dad097dccee071a33550f1d775524c9b4
 

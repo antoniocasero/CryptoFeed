@@ -25,6 +25,8 @@ public struct Coin {
     let volume24: Int
     let supply: Int
     let trade: Trade
+    let RSI: Float = 0
+    let timeStamp : Date
     
     init(dic: [String: AnyObject]) {
         
@@ -57,11 +59,12 @@ public struct Coin {
         self.supply = _supply
         self.trade = trade
         self.id = id
+        self.timeStamp = Date()
     }
 }
 
 extension Coin: CustomDebugStringConvertible {
     public var debugDescription: String {
-        return "[\(self.id.name)] \(self.id.longName): \(self.price) - it has a 24 h change rate: \(change24), volume: \(volume24)"
+        return "[\(timeStamp)][\(self.id.name)] \(self.id.longName): \(self.price) - it has a 24 h change rate: \(change24), volume: \(volume24)"
     }
 }
