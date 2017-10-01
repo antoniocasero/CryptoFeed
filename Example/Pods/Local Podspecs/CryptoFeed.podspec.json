@@ -26,7 +26,7 @@
   "frameworks": "Foundation",
   "dependencies": {
     "Socket.IO-Client-Swift": [
-      "~> 11.1.0"
+
     ]
   }
 }

@@ -8,24 +8,23 @@
 import Foundation
 
 public struct Coin {
-    struct Id {
-        let marketId:String
-        let name: String
-        let longName: String
+    public struct Id {
+        public let marketId:String
+        public let name: String
+        public let longName: String
     }
-    struct Trade {
+    public struct Trade {
         let exhange: String
-        let volume: Int
+        let volume: Double
     }
     
-    let id : Id
-    let price : Float
-    let change24 : Float
-    let marketCapitalization: Float
-    let volume24: Int
+    public let id : Id
+    public let price : Double
+    public let change24 : Double
+    public let marketCapitalization: Double
+    let volume24: Double
     let supply: Int
     let trade: Trade
-    let RSI: Float = 0
     let timeStamp : Date
     
     init(dic: [String: AnyObject]) {
@@ -34,19 +33,21 @@ public struct Coin {
             let tradeDic = tradeInfo["data"],
             let messageDic = dic["msg"]
             else {
-                fatalError("Error parsing the structure of the object")
+                fatalError("Error parsing the object structure")
         }
         
         guard let _marketId = tradeDic["market_id"] as? String,
             let _exhange = tradeDic["exchange_id"] as? String,
-            let _price = messageDic["price"] as? Float,
-            let _change24 = messageDic["cap24hrChange"] as? Float,
+            let _price = messageDic["price"] as? Double,
+            let _change24 = messageDic["cap24hrChange"] as? Double,
             let _lname = messageDic["long"] as? String,
             let _supply = messageDic["supply"] as? Int,
-            let _mCap = messageDic["mktcap"] as? Float,
-            let _name = dic["coin"] as? String,
-            let _volume = messageDic["volume"] as? Int
-            else {
+            let _mCap = messageDic["mktcap"] as? Double,
+            let _volume = messageDic["volume"] as? Double else{
+                fatalError("Error parsing the object")
+        }
+        
+        guard let _name = dic["coin"] as? String else {
                 fatalError("Error parsing the object")
         }
         

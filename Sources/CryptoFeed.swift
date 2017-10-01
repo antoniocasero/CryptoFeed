@@ -18,13 +18,9 @@ open class CryptoFeed {
         case marketCap
     }
     
-    public var preferableCoins : [String] = []
-    public var currentStatus : [String : Coin] = [:]
-    public var historyStatus : [String : [Coin]] = [:]
-    
 
-    private var allCoins: [String : Coin] = [:]
     private var socket : SocketIOClient
+    private var market = MarketCoin.shared
     
     public init() {
         socket = SocketIOClient(socketURL: URL(string: "http://socket.coincap.io")!, config: [.log(false), .compress])
@@ -34,14 +30,16 @@ open class CryptoFeed {
         socket.on(clientEvent: .connect) {data, ack in
             print("socket connected")
         }
+        
         socket.on("trades") { (data, _) in
             if let dic = data.first as? [String: AnyObject] {
                 let crypto = Coin(dic: dic)
-                self.allCoins[crypto.id.name] = crypto
-                if (!self.preferableCoins.isEmpty && !self.preferableCoins.contains(crypto.id.name)) {
+                self.market.allCoins[crypto.id.name] = crypto
+                if (!self.market.preferableCoins.isEmpty && !self.market.preferableCoins.contains(crypto.id.name)) {
                     return
                 }
-                self.currentStatus[crypto.id.name] = crypto
+                self.market.currentStatus[crypto.id.name] = crypto
+                self.market[crypto.id.name] = crypto.price
                 self.addToHistory(crypto, each: TimeInterval(60))
                 input(crypto)
             }
@@ -53,17 +51,21 @@ open class CryptoFeed {
         socket.disconnect()
     }
     
+    open func preferableCoins(_ coins:[String]) {
+        market.preferableCoins = coins
+    }
+    
     open func topCoins(limit:Int, by property:coinProperties) -> [Coin] {
         
         var sortArray:[Coin] = []
         switch property {
         case .volume:
-            sortArray = Array(self.allCoins.values).sorted { $0.0.volume24 > $0.1.volume24 }
+            sortArray = market.allCoins.values.sorted { $0.volume24 > $1.volume24 }
         case .gain:
-            sortArray = Array(self.allCoins.values).sorted { $0.0.change24 > $0.1.change24 }
+            sortArray = market.allCoins.values.sorted { $0.change24 > $1.change24 }
         case .marketCap:
-            sortArray = Array(self.allCoins.values).sorted {
-                $0.0.marketCapitalization > $0.1.marketCapitalization
+            sortArray = market.allCoins.values.sorted {
+                $0.marketCapitalization > $1.marketCapitalization
             }
         }
         let subArray : [Coin] = Array(sortArray[0...limit])
@@ -71,13 +73,15 @@ open class CryptoFeed {
     }
     
     func addToHistory(_ coin:Coin, each seconds:TimeInterval) {
-        if let lastUpdate = self.historyStatus[coin.id.name]?.last?.timeStamp {
+        var mutableArray = self.market.historyStatus[coin.id.name]
+        if let lastUpdate = self.market.historyStatus[coin.id.name]?.last?.timeStamp {
             if(Date().timeIntervalSince(lastUpdate) > TimeInterval(seconds)) {
-                self.historyStatus.appending(coin.id.name,coin)
+                mutableArray?.append(coin)
             }
         } else {
-            self.historyStatus.appending(coin.id.name,coin)
+            mutableArray?.append(coin)
         }
+        self.market.historyStatus[coin.id.name] = mutableArray
     }
     
     deinit {

@@ -12,12 +12,12 @@ import Foundation
 public struct HistoryModel {
 
     let marketCapHistory : [[Int]]
-    let priceHistory : [[Float]]
+    let priceHistory : [[Double]]
     let coinName : String
-    let price: [Float]
+    let price: [Double]
 
     init(name:String,dic:[String:Any]) {
-        guard let priceArray = dic["price"] as? [[Float]], let marketCapArray = dic["market_cap"] as? [[Int]] else {
+        guard let priceArray = dic["price"] as? [[Double]], let marketCapArray = dic["market_cap"] as? [[Int]] else {
             fatalError()
         }
         self.coinName = name

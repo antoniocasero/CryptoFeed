@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/antoniocasero/CryptoFeed.git", :tag => s.version.to_s, :submodules => true }
   s.source_files  = "Sources/**/*"
   s.frameworks  = "Foundation"
-  s.dependency "Socket.IO-Client-Swift", "~> 11.1.0"
+  s.dependency "Socket.IO-Client-Swift"
 end

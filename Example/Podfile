@@ -3,3 +3,7 @@ use_frameworks!
 target 'Example' do
     pod 'CryptoFeed', :path => '../.'
 end
+
+target ‘Tests’ do
+    pod 'CryptoFeed', :path => '../.'
+end

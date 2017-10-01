@@ -36,16 +36,7 @@ public extension Array {
             previous = element
         }
     }
-}
-
-extension Dictionary where Value : RangeReplaceableCollection & ExpressibleByArrayLiteral, Value.Iterator.Element == Value.Element {
-    mutating func appending(_ key: Key, _ value: Value.Element) {
-        if self[key] != nil {
-            self[key]!.append(value)
-        } else {
-            self[key] = [value]
-        }
-    }
+    
 }
 
 extension Date {
